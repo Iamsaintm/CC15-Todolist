@@ -9,6 +9,40 @@ import Header from "../components/Header";
 import ListItem from "../components/ListItem";
 
 function App() {
+  const generalList = [
+    {
+      id: 1,
+      text: "Inbox",
+      icon: <FaInbox />,
+      active: true,
+    },
+    {
+      id: 2,
+      text: "Today",
+      icon: <FaCalendar />,
+      active: false,
+    },
+    {
+      id: 3,
+      text: "Next 7 days",
+      icon: <FaCalendarAlt />,
+      active: false,
+    },
+  ];
+  const projectList = [
+    {
+      id: 1,
+      text: "Project-A",
+      icon: <FaInbox />,
+      active: true,
+    },
+    {
+      id: 2,
+      text: "Project-B",
+      icon: <FaInbox />,
+      active: false,
+    },
+  ];
   return (
     <div className="todo">
       <div className="todo__header">
@@ -18,21 +52,14 @@ function App() {
         <aside className="sidebar">
           <section className="sidebar__category"></section>
           <ul className="list">
-            <ListItem
-              text="Inbox"
-              icon={<FaInbox className="list__item__icon" />}
-              active={true}
-            />
-            <ListItem
-              text="Today"
-              icon={<FaCalendar className="list__item__icon" />}
-              active={false}
-            />
-            <ListItem
-              text="Next 7 days"
-              icon={<FaCalendarAlt className="list__item__icon" />}
-              active={false}
-            />
+            {generalList.map((obj) => (
+              <ListItem
+                key={obj.id}
+                text={obj.text}
+                icon={obj.icon}
+                active={obj.active}
+              />
+            ))}
           </ul>
           <section className="sidebar__category">
             <div className="accordion">
@@ -44,16 +71,14 @@ function App() {
               </div>
 
               <ul className="side__category">
-                <ListItem
-                  text="Project-A"
-                  icon={<FaInbox className="list__item__icon" />}
-                  active={true}
-                />
-                <ListItem
-                  text="Project-B"
-                  icon={<FaInbox className="list__item__icon" />}
-                  active={false}
-                />
+                {projectList.map((obj) => (
+                  <ListItem
+                    key={obj.id}
+                    text={obj.text}
+                    icon={obj.icon}
+                    active={obj.active}
+                  />
+                ))}
               </ul>
             </div>
           </section>
