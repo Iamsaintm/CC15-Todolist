@@ -21,17 +21,42 @@ function App() {
             <ListItem
               text="Inbox"
               icon={<FaInbox className="list__item__icon" />}
+              active={true}
             />
             <ListItem
               text="Today"
               icon={<FaCalendar className="list__item__icon" />}
+              active={false}
             />
             <ListItem
               text="Next 7 days"
               icon={<FaCalendarAlt className="list__item__icon" />}
+              active={false}
             />
           </ul>
-          <section className="sidebar__category"></section>
+          <section className="sidebar__category">
+            <div className="accordion">
+              <div className="accordion__toggle">
+                <li className="accordion__item">
+                  <FaChevronDown className="accordion__item__icon accordion__item__active" />
+                  <p className="accordion__item__text">Project</p>
+                </li>
+              </div>
+
+              <ul className="side__category">
+                <ListItem
+                  text="Project-A"
+                  icon={<FaInbox className="list__item__icon" />}
+                  active={true}
+                />
+                <ListItem
+                  text="Project-B"
+                  icon={<FaInbox className="list__item__icon" />}
+                  active={false}
+                />
+              </ul>
+            </div>
+          </section>
         </aside>
       </div>
       <div className="todo__content">TodoContent</div>

@@ -76,10 +76,7 @@
     height: calc(100vh - $header-height);
 }
 
-.list{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.accordion{
 
     &__item{
         display: flex;
@@ -88,15 +85,19 @@
         font-size: 2rem;
         padding: 10px;
         border-radius: 4px;
+        font-weight: 900;
+    
+
+    &__icon{
         cursor: pointer;
+        transition: 1s;
+    }
+    &__active{
+        transform: rotate(-90deg);
+    }
 
-        &:hover{
-            background-color: $grey-light;
-        }
-        
-        &__text{
-            font-weight: 500;
-        }
-
+    &__text{
+        font-weight: inherit;
+    }
     }
 }
