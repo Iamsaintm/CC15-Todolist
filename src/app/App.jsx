@@ -8,6 +8,8 @@ import {
 import Header from "../components/Header";
 import Lists from "../components/Lists";
 import TodoHeader from "../components/Todo/TodoHeader";
+import TodoCreate from "../components/Todo/TodoCreate";
+import TodoLists from "../components/Todo/TodoLists";
 
 function App() {
   const generalList = [
@@ -73,8 +75,9 @@ function App() {
           <TodoHeader />
 
           {/* CreateTodo */}
-
+          <TodoCreate />
           {/* TodoLists */}
+          <TodoLists />
         </main>
       </div>
     </div>
