@@ -1,6 +1,12 @@
 import "./App.scss";
+import {
+  FaInbox,
+  FaCalendar,
+  FaCalendarAlt,
+  FaChevronDown,
+} from "react-icons/fa";
 import Header from "../components/Header";
-import { FaInbox, FaCalendar, FaCalendarAlt, FaChevronDown } from 'react-icons/fa';
+import ListItem from "../components/ListItem";
 
 function App() {
   return (
@@ -11,20 +17,20 @@ function App() {
       <div className="todo__sidebar">
         <aside className="sidebar">
           <section className="sidebar__category"></section>
-            <ul className="list">
-              <li className="list__item">
-                  <FaInbox className="list__item__icon"/>
-                <p className="list__item__text">Inbox</p>
-              </li>
-              <li className="list__item">
-                  <FaCalendar className="list__item__icon"/>
-                <p className="list__item__text">Today</p>
-              </li>
-              <li className="list__item">
-                  <FaCalendarAlt className="list__item__icon"/>
-                <p className="list__item__text">Next 7 days</p>
-              </li>
-            </ul>
+          <ul className="list">
+            <ListItem
+              text="Inbox"
+              icon={<FaInbox className="list__item__icon" />}
+            />
+            <ListItem
+              text="Today"
+              icon={<FaCalendar className="list__item__icon" />}
+            />
+            <ListItem
+              text="Next 7 days"
+              icon={<FaCalendarAlt className="list__item__icon" />}
+            />
+          </ul>
           <section className="sidebar__category"></section>
         </aside>
       </div>
