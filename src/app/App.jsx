@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 import Header from "../components/Header";
 import ListItem from "../components/ListItem";
+import Lists from "../components/Lists";
 
 function App() {
   const generalList = [
@@ -51,16 +52,7 @@ function App() {
       <div className="todo__sidebar">
         <aside className="sidebar">
           <section className="sidebar__category"></section>
-          <ul className="list">
-            {generalList.map((obj) => (
-              <ListItem
-                key={obj.id}
-                text={obj.text}
-                icon={obj.icon}
-                active={obj.active}
-              />
-            ))}
-          </ul>
+          <Lists data={generalList} />
           <section className="sidebar__category">
             <div className="accordion">
               <div className="accordion__toggle">
@@ -70,16 +62,7 @@ function App() {
                 </li>
               </div>
 
-              <ul className="side__category">
-                {projectList.map((obj) => (
-                  <ListItem
-                    key={obj.id}
-                    text={obj.text}
-                    icon={obj.icon}
-                    active={obj.active}
-                  />
-                ))}
-              </ul>
+              <Lists data={projectList} />
             </div>
           </section>
         </aside>
