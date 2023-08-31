@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { HiPlus } from "react-icons/hi";
+import { useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import { HiPlus } from 'react-icons/hi';
 
-import TodoForm from "./TodoForm";
-import styles from "./TodoCreate.module.scss";
+import TodoForm from './TodoForm';
+import styles from './TodoCreate.module.scss';
 
 /* 
 CC1 - Condition Rendering
@@ -62,7 +63,10 @@ function TodoCreate() {
   return (
     <>
       {isOpenForm ? (
-        <TodoForm textSubmit="Add Task" setIsOpenForm={setIsOpenForm} />
+        <TodoForm 
+          textSubmit='Add Task' 
+          setIsOpenForm={setIsOpenForm}
+        />
       ) : (
         <div className={styles.todo__create} onClick={handleClick}>
           <div className={styles.todo__create__button}>
