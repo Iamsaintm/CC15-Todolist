@@ -40,11 +40,10 @@ function TodoCreate() {
   const handleClick = function () {
     setIsOpenForm(!isOpenForm);
   };
-
   return (
     <>
       {!isOpenForm ? (
-        <TodoForm />
+        <TodoForm textSubmit="Add Task" />
       ) : (
         <div className={styles.todo__create} onClick={handleClick}>
           <div className={styles.todo__create__button}>
