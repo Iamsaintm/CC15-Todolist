@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { Button } from "../Common/Button/Button";
 import styles from "./TodoForm.module.scss";
-
 /*
   props = {
-    textSubmit: string
+    textSubmit : string
   }
 */
-
 /*
 CC1- Form Handle
 - ใช้ FN ไปผูกกับ Event ชื่อ onSubmit
@@ -18,20 +16,28 @@ CC1- Form Handle
   - type="button" :  <button type='submit'>2</button>
 */
 
+/* 
+props = {
+  textSubmit : string
+  setIsOpenForm : FN
+}
+*/
 function TodoForm(props) {
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(true);
 
   const handleSubmit = function (event) {
     event.preventDefault();
     console.log("submit");
   };
-  const handleCancel = function () {
-    console.log("Cancel");
-  };
 
+  const handleCancel = function () {
+    console.log("cancel");
+    // correctName : setIsOpenForm(false)
+    // inCorrectName : undefined(false) => บู้มเป็นโกโก้ครั้นซ์
+    props.setIsOpenForm(false);
+  };
   return (
-    <form className={styles.todo__form__container} onSubmit={handleSubmit}>
-      {/*	Body */}
+    <form onSubmit={handleSubmit} className={styles.todo__form__container}>
       <input className={styles.todo__form__input} placeholder="Task Name" />
 
       {/*Form Footer */}
