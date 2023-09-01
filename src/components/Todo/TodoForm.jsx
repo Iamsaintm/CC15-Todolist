@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { Button } from '../Common/Button/Button';
-import styles from './TodoForm.module.scss';
+import { useState } from "react";
+import { nanoid } from "nanoid";
+import { Button } from "../Common/Button/Button";
+import styles from "./TodoForm.module.scss";
 /*
   props = {
     textSubmit : string
@@ -24,7 +25,7 @@ props = {
 */
 function TodoForm(props) {
   const [isError, setIsError] = useState(false);
-  const [taskInput, setTaskInput] = useState('');
+  const [taskInput, setTaskInput] = useState("");
 
   const handleChangeInput = function (event) {
     if (isError) setIsError(false);
@@ -40,16 +41,29 @@ function TodoForm(props) {
     // 3.FormValidation
     // case1 : submit ได้ => ไม่ error
     // case2 : submit ไม่ได้ => แสดง Error
-    if (taskInput.trim() === '') {
-      console.log('Error');
+    if (taskInput.trim() === "") {
+      console.log("Error");
       setIsError(true);
       return;
     }
-    console.log('submit');
+    console.log("submit");
+    // create NewTodo
+    // 1 - ส่ง Request ไปหลังบ้านเพื่อ save ลง Database
+    // 2 - ทำการอัพเดพ State ของ AllTodo == React ทำการ Rerender
+    const newTodo = {
+      id: nanoid(),
+      task: taskInput,
+      status: false,
+      due_date: "2023-01-09",
+    };
+    const newTodoLists = [newTodo, ...props.data];
+
+    props.setTodo(newTodoLists);
+    props.setIsOpenForm(false);
   };
 
   const handleCancel = function () {
-    console.log('cancel');
+    console.log("cancel");
     // correctName : setIsOpenForm(false)
     // inCorrectName : undefined(false) => บู้มเป็นโกโก้ครั้นซ์
     props.setIsOpenForm(false);
@@ -58,16 +72,23 @@ function TodoForm(props) {
     <form onSubmit={handleSubmit} className={styles.todo__form__container}>
       <input
         className={styles.todo__form__input}
-        placeholder='Task Name'
+        placeholder="Task Name"
         value={taskInput}
         onChange={handleChangeInput}
       />
       {/*Form Footer */}
       <div className={styles.todo__form__footer}>
-        {isError ? <p className={styles.todo__error}>Title is required</p> : null}
+        {isError ? (
+          <p className={styles.todo__error}>Title is required</p>
+        ) : null}
         <div className={styles.todo__form__buttons}>
-          <Button text='Cancel' active={false} type='button' onClick={handleCancel} />
-          <Button text={props.textSubmit} active={true} type='submit' />
+          <Button
+            text="Cancel"
+            active={false}
+            type="button"
+            onClick={handleCancel}
+          />
+          <Button text={props.textSubmit} active={true} type="submit" />
         </div>
       </div>
     </form>

@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
-import { HiPlus } from 'react-icons/hi';
+import { useState } from "react";
+import { FaPlus } from "react-icons/fa";
+import { HiPlus } from "react-icons/hi";
 
-import TodoForm from './TodoForm';
-import styles from './TodoCreate.module.scss';
+import TodoForm from "./TodoForm";
+import styles from "./TodoCreate.module.scss";
 
 /* 
 CC1 - Condition Rendering
@@ -53,7 +53,7 @@ CC5 - React State (1 ในฟังก์ชันของกลุ่ม Reac
   // Rerender 1 ครั้ง == Code ทั้งหมดใน FC จะถูกรันใหม่ 1 ครั้ง
 */
 
-function TodoCreate() {
+function TodoCreate(props) {
   const [isOpenForm, setIsOpenForm] = useState(false);
 
   const handleClick = function () {
@@ -63,9 +63,11 @@ function TodoCreate() {
   return (
     <>
       {isOpenForm ? (
-        <TodoForm 
-          textSubmit='Add Task' 
+        <TodoForm
+          textSubmit="Add Task"
           setIsOpenForm={setIsOpenForm}
+          data={props.data}
+          setTodo={props.setTodo}
         />
       ) : (
         <div className={styles.todo__create} onClick={handleClick}>
