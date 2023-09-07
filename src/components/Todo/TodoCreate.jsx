@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HiPlus } from "react-icons/hi";
 
 import TodoForm from "./TodoForm";
 import styles from "./TodoCreate.module.scss";
+import { TodoContext } from "../../context/TodoContext";
 
 /* 
 CC1 - Condition Rendering
@@ -52,9 +53,9 @@ CC5 - React State (1 ในฟังก์ชันของกลุ่ม Reac
   // Rerender 1 ครั้ง == Code ทั้งหมดใน FC จะถูกรันใหม่ 1 ครั้ง
 */
 
-function TodoCreate(props) {
+function TodoCreate() {
   const [isOpenForm, setIsOpenForm] = useState(false);
-
+  const { addTodo } = useContext(TodoContext);
   const handleClick = function () {
     setIsOpenForm(!isOpenForm);
   };
@@ -65,7 +66,7 @@ function TodoCreate(props) {
         <TodoForm
           textSubmit="Add Task"
           setIsOpenForm={setIsOpenForm}
-          addTodo={props.addTodo}
+          addTodo={addTodo}
         />
       ) : (
         <div className={styles.todo__create} onClick={handleClick}>

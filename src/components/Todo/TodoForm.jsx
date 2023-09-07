@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "../Common/Button/Button";
 import styles from "./TodoForm.module.scss";
+import useTodo from "../../hooks/useTodo";
+
 /*
   props = {
     textSubmit : string
@@ -25,6 +27,8 @@ props = {
 function TodoForm(props) {
   const [isError, setIsError] = useState(false);
   const [taskInput, setTaskInput] = useState(props.oldTodo?.task || "");
+  // const { addTodo, editTodo } = useTodo();
+  const { addTodo, editTodo } = useTodo();
 
   const handleChangeInput = function (event) {
     if (isError) setIsError(false);
@@ -39,9 +43,15 @@ function TodoForm(props) {
       return;
     }
 
-    if (props.addTodo) props.addTodo(taskInput);
-    else if (props.oldTodo && props.editTodo) {
-      props.editTodo(props.oldTodo.id, { task: taskInput });
+    // if (props.addTodo) props.addTodo(taskInput);
+    // else if (props.oldTodo && props.editTodo) {
+    //   props.editTodo(props.oldTodo.id, { task: taskInput });
+    // }
+
+    if (props.oldTodo) {
+      editTodo(props.oldTodo.id, { task: taskInput });
+    } else {
+      addTodo(taskInput);
     }
 
     props.setIsOpenForm(false);

@@ -1,5 +1,8 @@
-import TodoItem from './TodoItem';
-import styles from './TodoLists.module.scss';
+// import { useContext } from "react";
+import TodoItem from "./TodoItem";
+import styles from "./TodoLists.module.scss";
+// import { TodoContext } from "../../context/TodoContext";
+import useTodo from "../../hooks/useTodo";
 
 /*
 SCHEMA
@@ -11,18 +14,19 @@ data = Array[] {id:number, task:string, status:boolean, due_date:string}
 dataRender = Array[] <TodoItem task=... done=... date=.... /> 
 */
 
-function TodoLists(props) {
+function TodoLists() {
+  // const { allTodos } = useContext(TodoContext);
+  const { allTodos } = useTodo();
+
   return (
     <ul className={styles.todo__lists}>
-      {props.data.map((todoObj) => (
+      {allTodos.map((todoObj) => (
         <TodoItem
           key={todoObj.id}
           id={todoObj.id}
           task={todoObj.task}
           done={todoObj.status}
           date={todoObj.due_date}
-          deleteTodo={props.deleteTodo}
-          editTodo={props.editTodo}
         />
       ))}
     </ul>
